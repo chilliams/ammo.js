@@ -169,6 +169,11 @@ interface ClosestRayResultCallback {
 };
 ClosestRayResultCallback implements RayResultCallback;
 
+interface btKinematicClosestNotMeRayResultCallback {
+  void btKinematicClosestNotMeRayResultCallback(btCollisionObject me);
+};
+btKinematicClosestNotMeRayResultCallback implements ClosestRayResultCallback;
+
 interface btManifoldPoint {
   [Const, Ref] btVector3 getPositionWorldOnA();
   [Const, Ref] btVector3 getPositionWorldOnB();

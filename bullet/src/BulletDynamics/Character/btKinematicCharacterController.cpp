@@ -37,31 +37,6 @@ getNormalizedVector(const btVector3& v)
 }
 
 
-///@todo Interact with dynamic objects,
-///Ride kinematicly animated platforms properly
-///More realistic (or maybe just a config option) falling
-/// -> Should integrate falling velocity manually and use that in stepDown()
-///Support jumping
-///Support ducking
-class btKinematicClosestNotMeRayResultCallback : public btCollisionWorld::ClosestRayResultCallback
-{
-public:
-	btKinematicClosestNotMeRayResultCallback (btCollisionObject* me) : btCollisionWorld::ClosestRayResultCallback(btVector3(0.0, 0.0, 0.0), btVector3(0.0, 0.0, 0.0))
-	{
-		m_me = me;
-	}
-
-	virtual btScalar addSingleResult(btCollisionWorld::LocalRayResult& rayResult,bool normalInWorldSpace)
-	{
-		if (rayResult.m_collisionObject == m_me)
-			return 1.0;
-
-		return ClosestRayResultCallback::addSingleResult (rayResult, normalInWorldSpace);
-	}
-protected:
-	btCollisionObject* m_me;
-};
-
 class btKinematicClosestNotMeConvexResultCallback : public btCollisionWorld::ClosestConvexResultCallback
 {
 public:
